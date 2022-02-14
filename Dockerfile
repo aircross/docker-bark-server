@@ -34,24 +34,6 @@ RUN set -xe && \
     
 #RUN /usr/local/bin/python -m pip install --upgrade pip
 # https://api.github.com/repos/Finb/bark-server/releases/latest
-
-
-
-# CMD /bin/sh
-#RUN set -x && \
-#	#wget --no-check-certificate https://github.com/django/django/archive/refs/tags/${DJANGO_VERSION}.tar.gz && \ 
-#	#tar xzf ${DJANGO_VERSION}.tar.gz && \
-#	#python -m pip install -e django-${DJANGO_VERSION}/ && \
-#	mkdir /django && \
-#	cd /django && \
-#	django-admin startproject home && \
-#	#rm -rf *.tar.gz
-#
-##RUN pip3 install django-simpleui -U
-##https://github.com/django/django/releases/tag/4.0.2
-##https://github.com/django/django/archive/refs/tags/4.0.2.zip
-##https://github.com/django/django/archive/refs/tags/4.0.2.tar.gz
-##git clone https://github.com/django/django.git
 #EXPOSE 8080
 #
 # ENTRYPOINT ["./bark-server_linux_amd64", "-addr", "0.0.0.0:8080", "-data", "./bark-data"]
