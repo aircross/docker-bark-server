@@ -2,6 +2,8 @@
 ## 项目简介
  Bark server docker
 本项目当前仅适配了amd64的运行环境
+默认会采用bark-server最新版
+截至20220214，版本为2.0.3
 
 使用 Docker 部署
    4.1. 安装docker
@@ -18,3 +20,6 @@ sudo service docker start|restart|stop
 Docker执行命令
 
 docker run -dt --name bark -p 8080:8080  aircross/docker-bark-server
+
+原作者使用说明：
+https://day.app/2018/06/bark-server-document/
