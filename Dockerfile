@@ -14,7 +14,19 @@ ADD . /work
 
 WORKDIR /work
 
-RUN set -xe && \
+RUN echo "******************系统平台******************" && \
+    echo "$(uname -m)" && \
+    echo "******************系统平台******************" && \
+    case "$(uname -m)" in  \
+    x86_64) PLATFORM='amd64';; \
+    armv5l) PLATFORM='armv5';; \
+    armv6l) PLATFORM='armv6';; \
+    armv7l) PLATFORM='armv7';; \
+    armv8l) PLATFORM='armv8';; \
+    aarch64) PLATFORM='arm';; \
+    *) echo "unsupported architecture"; exit 1 ;; \
+    esac && \
+    set -xe && \
     apk add tzdata && \
     cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && \
     echo "Asia/Shanghai" > /etc/timezone && \
@@ -27,9 +39,9 @@ RUN set -xe && \
     cd /bark &&\
     # URL=https://github.com/aircross/docker-trojan-go/releases/download/${VER}/trojan-go-linux-${PLATFORM}.zip && \
     # https://github.com/Finb/bark-server/releases/download/v2.0.3/bark-server_linux_amd64
-    URL=https://github.com/Finb/bark-server/releases/download/${VER}/bark-server_linux_amd64 && \
-    wget --no-check-certificate $URL && \
-    chmod +x bark-server_linux_amd64
+    URL=https://github.com/Finb/bark-server/releases/download/${VER}/bark-server_linux_${PLATFORM} && \
+    wget --no-check-certificate $URL -O bark-server && \
+    chmod +x bark-server
 
     
 #RUN /usr/local/bin/python -m pip install --upgrade pip
@@ -37,6 +49,6 @@ RUN set -xe && \
 #EXPOSE 8080
 #
 # ENTRYPOINT ["./bark-server_linux_amd64", "-addr", "0.0.0.0:8080", "-data", "./bark-data"]
-ENTRYPOINT /bark/bark-server_linux_amd64 -addr 0.0.0.0:8080 -data /bark/bark-data
+ENTRYPOINT /bark/bark-server -addr 0.0.0.0:8080 -data /bark/bark-data
 
 
