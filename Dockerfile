@@ -20,7 +20,7 @@ RUN set -xe && \
     echo "Asia/Shanghai" > /etc/timezone && \
     apk del tzdata && \
     apk add --no-cache tzdata ca-certificates jq curl wget &&\
-    VER=$(curl -s https://api.github.com/repos/aircross/docker-trojan-go/releases/latest | grep tag_name | cut -d '"' -f 4) && \
+    VER=$(curl -s https://api.github.com/repos/Finb/bark-server/releases/latest | grep tag_name | cut -d '"' -f 4) && \
 	VER_NUM=$(echo $VER|cut -b 2-) && \
 	echo VER_NUM && \
     mkdir /bark &&\
